@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c26jufswfi2bh"]
+
+[ext_resource type="Texture2D" uid="uid://dn2uhj5jnbcj1" path="res://assets/cartas/combat_priest.png" id="1_iwweb"]
+[ext_resource type="PackedScene" uid="uid://jcm4ger3ns40" path="res://assets/bases/Bases Papel-base_32.glb" id="2_ni6nx"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wfmmx"]
+
+[node name="Model" type="CharacterBody3D"]
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30011, 0)
+pixel_size = 0.0048
+billboard = 2
+texture = ExtResource("1_iwweb")
+
+[node name="Base" parent="Pivot" instance=ExtResource("2_ni6nx")]
+transform = Transform3D(57.2, 0, 0, 0, 57.2, 0, 0, 0, 57.2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_wfmmx")
