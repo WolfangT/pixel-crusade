@@ -1,22 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://c26jufswfi2bh"]
+[gd_scene load_steps=7 format=3 uid="uid://ds20afeq5fbty"]
 
-[ext_resource type="Texture2D" uid="uid://dn2uhj5jnbcj1" path="res://assets/cartas/combat_priest.png" id="1_iwweb"]
-[ext_resource type="PackedScene" uid="uid://jcm4ger3ns40" path="res://assets/bases/Bases Papel-base_32.glb" id="2_ni6nx"]
+[ext_resource type="PackedScene" uid="uid://c26jufswfi2bh" path="res://src/models/base_model.tscn" id="1_t6p38"]
+[ext_resource type="Script" uid="uid://4h1cvticrj7u" path="res://src/utils/dice_modifier.gd" id="2_ni6nx"]
+[ext_resource type="Texture2D" uid="uid://cc85nihxm3set" path="res://assets/cartas/combat_priest_pixel.png" id="3_ni6nx"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_wfmmx"]
+[sub_resource type="Resource" id="Resource_wfmmx"]
+script = ExtResource("2_ni6nx")
+extra = 0
+dice = 2
+fixed = 0
+metadata/_custom_type_script = "uid://4h1cvticrj7u"
 
-[node name="Model" type="CharacterBody3D"]
+[sub_resource type="Resource" id="Resource_s0nyo"]
+script = ExtResource("2_ni6nx")
+extra = 0
+dice = 2
+fixed = 0
+metadata/_custom_type_script = "uid://4h1cvticrj7u"
 
-[node name="Pivot" type="Node3D" parent="."]
+[sub_resource type="Resource" id="Resource_l764g"]
+script = ExtResource("2_ni6nx")
+extra = 0
+dice = 0
+fixed = 0
+metadata/_custom_type_script = "uid://4h1cvticrj7u"
 
-[node name="Sprite3D" type="Sprite3D" parent="Pivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30011, 0)
-pixel_size = 0.0048
-billboard = 2
-texture = ExtResource("1_iwweb")
+[node name="BaseModel" instance=ExtResource("1_t6p38")]
+ModelName = " Heretic Priest "
+MovementDistance = 6
+BaseSize = "32"
+MovementType = "Infantry"
+RangeCharacteristic = SubResource("Resource_wfmmx")
+MeleeCharacteristic = SubResource("Resource_s0nyo")
+ArmorCharacteristic = SubResource("Resource_l764g")
+KeywordsList = Array[String](["HERETIC", "ELITE", "TOUGH", "LEADER"])
+CharacterSprite2D = ExtResource("3_ni6nx")
 
-[node name="Base" parent="Pivot" instance=ExtResource("2_ni6nx")]
-transform = Transform3D(57.2, 0, 0, 0, 57.2, 0, 0, 0, 57.2, 0, 0, 0)
+[node name="Sprite2D" parent="Pivot" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CylinderShape3D_wfmmx")
+[node name="Base" parent="Pivot" index="1"]
+transform = Transform3D(0.057, 0, 0, 0, -2.49155e-09, 0.057, 0, -0.057, -2.49155e-09, 0, 0, 0)
