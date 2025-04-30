@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://budrvmnmxvk2d"]
+[gd_scene load_steps=8 format=3 uid="uid://budrvmnmxvk2d"]
 
 [ext_resource type="Script" uid="uid://b5kn17oto74o" path="res://src/main_game.gd" id="1_fq370"]
+[ext_resource type="Script" uid="uid://dsio3o1q73f1q" path="res://src/camera_pivot.gd" id="2_3vl0c"]
 [ext_resource type="PackedScene" uid="uid://ds20afeq5fbty" path="res://src/models/combat_priest.tscn" id="2_78si8"]
 [ext_resource type="Texture2D" uid="uid://c3ydthu2vpopv" path="res://assets/dev_512_gr_032x.jpg" id="3_aptux"]
 
@@ -17,14 +18,15 @@ size = Vector3(10, 1, 10)
 script = ExtResource("1_fq370")
 
 [node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.34202, -0.939692, 0, 0.939692, 0.34202, 0, 0, 0)
+script = ExtResource("2_3vl0c")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5, 5)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
+keep_aspect = 0
 
 [node name="BaseModel" parent="." instance=ExtResource("2_78si8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.723289, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -36,3 +38,7 @@ shape = SubResource("BoxShape3D_78si8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 material_override = SubResource("StandardMaterial3D_3vl0c")
 mesh = SubResource("BoxMesh_aptux")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 10, -10)
+shadow_enabled = true

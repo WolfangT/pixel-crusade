@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://c26jufswfi2bh"]
+
+[ext_resource type="Script" uid="uid://di5g5x80wtaw7" path="res://src/base_model.gd" id="1_ni6nx"]
+
+[sub_resource type="Gradient" id="Gradient_fqpka"]
+offsets = PackedFloat32Array(0, 0.632124, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.310881, 0.310881, 0.310881, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f2ut7"]
+gradient = SubResource("Gradient_fqpka")
+fill = 1
+
+[sub_resource type="Gradient" id="Gradient_hq8bp"]
+offsets = PackedFloat32Array(0, 0.439024, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.282927, 0.282927, 0.282927, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lcex4"]
+gradient = SubResource("Gradient_hq8bp")
+fill = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2ut7"]
+albedo_color = Color(1, 0.0470588, 1, 1)
+albedo_texture = SubResource("GradientTexture2D_f2ut7")
+metallic = 0.6
+metallic_texture = SubResource("GradientTexture2D_lcex4")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wfmmx"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_04rm0"]
+
+[node name="BaseModel" type="CharacterBody3D"]
+script = ExtResource("1_ni6nx")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Sprite2D" type="Sprite3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30011, 0)
+pixel_size = 0.0048
+billboard = 2
+
+[node name="Base" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(57.2, 0, 0, 0, 57.2, 0, 0, 0, 57.2, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_f2ut7")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_wfmmx")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_04rm0")
